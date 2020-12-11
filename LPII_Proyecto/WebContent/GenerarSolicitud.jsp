@@ -91,7 +91,7 @@
 																message : 'Campo descripcion es obligatorio'
 															},
 															regexp : {
-																regexp : /^[a-zA-Z\s\ñ\Ñ\á\é]{3,150}$/,
+																regexp : /^[a-zA-Z\s\ñ\Ñ\á\é(,|;)]{3,150}$/,
 																message : 'Campo descripcion solo letras min 3 hasta max 150 letras'
 															}
 														}

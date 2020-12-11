@@ -29,21 +29,12 @@
 
         <ul class="nav navbar-nav">
           <li class="dropdown"><a href="#" class="dropdown-toggle"
-            data-toggle="dropdown"> Negocio<b class="caret"></b>
+            data-toggle="dropdown"> Analistas<b class="caret"></b>
           </a>
             <ul class="dropdown-menu">
+              <li><a href="AnalistaCRUD.jsp">CRUD Analista</a></li>
             </ul></li>
         </ul>
-
-
-        <ul class="nav navbar-nav">
-          <li class="dropdown"><a href="#" class="dropdown-toggle"
-            data-toggle="dropdown"> Consultas<b class="caret"></b>
-          </a>
-            <ul class="dropdown-menu">
-            </ul></li>
-        </ul>
-
 
         <ul class="nav navbar-nav navbar-right">
           <li><a href="logout">Salir</a></li>

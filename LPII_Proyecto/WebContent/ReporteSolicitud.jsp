@@ -24,7 +24,7 @@
 <body>
 	<jsp:include page="Cabecera.jsp" />
 	<div class="container bg-success"
-		style="margin-top: 8%; margin-bottom: 3%; width: 80%">
+		style="margin-top: 8%; margin-bottom: 3%; width: 90%">
 		<c:if test="${requestScope.mensaje != null}">
 			<div class="alert alert-warning alert-dismissible fade show"
 				role="alert">
@@ -55,7 +55,7 @@
 					<th>Descripcion</th>
 					<th>Aplicacion</th>
 					<th>Estado</th>
-					<th>Analista</th>
+					<th></th>
 					<th></th>
 				</tr>
 			</thead>
@@ -68,52 +68,76 @@
 						<td>${ row.descripcion }</td>
 						<td>${ row.app }</td>
 						<td>${ row.estado }</td>
-						<td>${ row.usuario }</td>
-						<td class="" style="width: 150px">
-							<button type="button" class="btn btn-info" data-toggle="modal"
-								data-target="#exampleModal" id="btnEditar">Editar</button>
+						<td><button type="button" class="btn btn-info"
+								data-toggle="modal" data-target="#exampleModal" id="btnEditar">APROBAR
+								SOLICITUD</button></td>
+						<td class="" style="">
 							<button type="button" class="btn btn-danger" data-toggle="modal"
-								data-target="#modalEliminar" id="btnEliminar">Eliminar</button>
+								data-target="#modalEliminar" id="btnEliminar">ELIMINAR</button>
 						</td>
 					</tr>
 				</c:forEach>
 
 			</tbody>
 		</table>
-		
+
 		<!-- Modal -->
-		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		  <div class="modal-dialog">
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-		          <span aria-hidden="true">&times;</span>
-		        </button>
-		      </div>
-		      <div class="modal-body">
-		        <form id="idRegistra" action="ServletDocente?accion=REGISTRAR" method="post" data-toggle="validator" role="form">
-				  <input type="text" name="codigo" id="idCodigo">
-				  <div class="form-group">
-				    <label for="exampleInputEmail1">Nombres</label>
-				    <input type="text" class="form-control" name="nombres" id="idNombres">
-				  </div>
-				  <div class="form-group">
-				    <label for="exampleInputEmail1">Apellidos</label>
-				    <input type="text" class="form-control" name="apellidos" id="idApellidos">
-				  </div>
-				  <div class="form-group">
-				    <label for="exampleInputEmail1">Edad</label>
-				    <input type="text" class="form-control" name="edad" id="idEdad">
-				  </div>
-				  <div class="modal-footer">
-			        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-			        <button type="submit" class="btn btn-primary">Registrar</button>
-			      </div>	
-				</form>
-		      </div>
-		    </div>
-		  </div>
+		<div class="modal fade" id="exampleModal" tabindex="-1"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Aprobacion de Solicitud</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form id="idRegistra" action="SolicitudCrud?ACCION=MODIFICAR"
+							method="post" data-toggle="validator" role="form">
+							<input type="text" name="codigo" id="idCodigo" readonly="readonly">
+							<div class="form-group">
+								<label>Aplicacion</label> <select name="apli" id="aplic"
+									class="form-control">
+									<option selected value="">SELECCIONE[]</option>
+									<option value="Mascotas Latinas">Mascotas Latinas</option>
+									<option value="Hospital La Muerte">Hospital La Muerte</option>
+									<option value="Banco El Grillo">Banco El Grillo</option>
+									<option value="Sistema Envio de Facturas">Sistema
+										Envio de Facturas</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="exampleFormControlTextarea1">Descripcion</label>
+								<textarea class="form-control" name="descripcion" id="descrip"></textarea>
+							</div>
+							<div class="form-group">
+								<label>Area</label> <select name="area" id="areaa"
+									class="form-control">
+									<option selected value="">SELECCIONE[]</option>
+									<option value="Tecnica">Tecnica</option>
+									<option value="Ofi. General">Ofi. General</option>
+									<option value="Marketing">Marketing</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label>Fecha de Emision</label> <input type="date"
+									class="form-control" name="fecha" id="fechaa">
+							</div>
+							<div class="form-group">
+								<label>Estado</label> <input type="text" value="APROBADA"
+									class="form-control" name="estado" id="estado" readonly="readonly">
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary"
+									data-dismiss="modal">CERRAR</button>
+								<button type="submit" class="btn btn-primary">APROBAR</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
 		</div>
 
 		<!-- modal para confirmar eliminación -->
@@ -122,7 +146,8 @@
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Eliminar Solicitud</h5>
+						<h5 class="modal-title" id="exampleModalLabel">Eliminar
+							Solicitud</h5>
 
 						<button type="button" class="close" data-dismiss="modal"
 							aria-label="Close">
@@ -158,9 +183,20 @@
 			$("#idCodi").val(cod);
 		})
 		//asignar evento click al botón btnEditar
-		//$(document).on("click", "#btnEditar", function() {
-
-		//})
+		$(document).on("click", "#btnEditar", function() {
+			var cod, area, fecha, descri, app, estado;
+			cod = $(this).parents("tr").find("td")[0].innerHTML;
+			area = $(this).parents("tr").find("td")[1].innerHTML;
+			fecha = $(this).parents("tr").find("td")[2].innerHTML;
+			descri = $(this).parents("tr").find("td")[3].innerHTML;
+			app = $(this).parents("tr").find("td")[4].innerHTML;
+			//estado = $(this).parents("tr").find("td")[0].innerHTML;
+			$("#idCodigo").val(cod);
+			$("#aplic").val(app);
+			$("#descrip").val(descri);
+			$("#areaa").val(area);
+			$("#fechaa").val(fecha);
+		})
 	</script>
 	<script type="text/javascript">
 		$(document)

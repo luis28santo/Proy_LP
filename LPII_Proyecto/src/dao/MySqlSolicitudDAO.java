@@ -46,7 +46,7 @@ public class MySqlSolicitudDAO implements SolicitudDAO{
 		PreparedStatement pstm = null;
 		try {
 			conn = MySqlDBConexion.getConexion();
-			String sql = "update solicitud set FecEmi_Soli=?,Area_Soli=?,Descrip_Soli=?,App_Soli=?,Est_Soli=?,idUsuario=3 where idSolicitud=?";
+			String sql = "update solicitud set FecEmi_Soli=?,Area_Soli=?,Descrip_Soli=?,App_Soli=?,Est_Soli=?,id_usu=3 where idSolicitud=?";
 			pstm = conn.prepareStatement(sql);
 			pstm.setDate(1, objS.getFechaEmi());
 			pstm.setString(2, objS.getArea());
@@ -101,7 +101,7 @@ public class MySqlSolicitudDAO implements SolicitudDAO{
 		ResultSet rs = null;
 		try {
 			conn = MySqlDBConexion.getConexion();
-			String sql = "select s.idSolicitud, s.FecEmi_Soli,s.Area_Soli,s.Descrip_Soli,s.App_Soli,s.Est_Soli,concat(u.nombres,' ',u.apaterno) as usuario from solicitud s join usuario u on s.id_usu = u.idUsuario where s.Area_Soli like ?";
+			String sql = "select s.idSolicitud, s.FecEmi_Soli,s.Area_Soli,s.Descrip_Soli,s.App_Soli,s.Est_Soli,concat(u.nombres,' ',u.apaterno) as usuario from solicitud s join usuario u on s.id_usu = u.idUsuario where s.Area_Soli like ? and s.Est_Soli='Pendiente'";
 			pstm = conn.prepareStatement(sql);
 			pstm.setString(1, filtro);
 			rs= pstm.executeQuery();

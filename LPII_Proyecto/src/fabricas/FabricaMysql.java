@@ -1,5 +1,9 @@
 package fabricas;
 
+import dao.AnalistaDAO;
+import dao.DistritoDAO;
+import dao.MySqlAnalistaDAO;
+import dao.MySqlDistritoDAO;
 import dao.MySqlSolicitudDAO;
 import dao.MySqlTipoUsuarioDAO;
 import dao.MySqlUsuarioDAO;
@@ -21,6 +25,16 @@ public class FabricaMysql extends Fabrica {
 	@Override
 	public SolicitudDAO getSolicitudDAO() {
 		return new MySqlSolicitudDAO();
+	}
+	@Override
+	public DistritoDAO getDistritoDAO() {
+		// TODO Auto-generated method stub
+		return new MySqlDistritoDAO();
+	}
+	@Override
+	public AnalistaDAO getAnalistaDAO() {
+		// TODO Auto-generated method stub
+		return  new MySqlAnalistaDAO();
 	}
 	
 

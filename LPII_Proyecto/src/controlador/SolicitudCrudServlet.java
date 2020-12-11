@@ -71,8 +71,44 @@ public class SolicitudCrudServlet extends HttpServlet {
 		}
 	}
 
-	private void modificar(HttpServletRequest request, HttpServletResponse response) {
+	private void modificar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		try {
+			// parametros
+			String id = request.getParameter("codigo");
+			String app = request.getParameter("apli");
+			String descrip = request.getParameter("descripcion");
+			String area = request.getParameter("area");
+			String fecha = request.getParameter("fecha");
+			String estado = request.getParameter("estado");
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			// crear objeto
+			Solicitud objS = new Solicitud();
+			objS.setCodigo(Integer.parseInt(id));
+			objS.setApp(app);
+			objS.setDescripcion(descrip);
+			objS.setArea(area);
+			objS.setFechaEmi(new Date(sdf.parse(fecha).getTime()));
+			objS.setEstado(estado);
+
+			Fabrica fabrica = Fabrica.getFabrica(Fabrica.MYSQL);
+			SolicitudDAO dao = fabrica.getSolicitudDAO();
+
+			int s = dao.actualizaSolicitud(objS);
+			if (s > 0) {
+				List<Solicitud> lista = dao.listSolicitud("%");
+				request.setAttribute("SOLICITUD", lista);
+				request.setAttribute("mensaje", "Eliminado Correctamente");
+			} else {
+				request.setAttribute("mensaje", "Error en la Aprobacion");
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			request.setAttribute("mensaje", "Error Envio");
+		}finally {
+			request.getRequestDispatcher("/ReporteSolicitud.jsp").forward(request, response);
+		}
 
 	}
 
